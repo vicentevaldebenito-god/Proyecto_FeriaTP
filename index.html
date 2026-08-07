@@ -19,9 +19,46 @@
                 <span>Prospere</span>
             </div>
             <div class="header-right">
-                <button class="icon-btn" aria-label="Notificaciones">
-                    <i class="bi bi-bell"></i>
-                </button>
+                <!-- Notificaciones con Badge absoluto -->
+                <div class="notification-wrapper">
+                    <button class="icon-btn position-relative" onclick="toggleNotifications()"
+                        aria-label="Notificaciones">
+                        <i class="bi bi-bell"></i>
+                        <span class="notification-badge-top"></span>
+                    </button>
+                    <div id="notifications-dropdown" class="notifications-dropdown hidden">
+                        <div class="dropdown-header">
+                            <strong>Centro de Alertas</strong>
+                            <span class="badge-today">3 Nuevas</span>
+                        </div>
+                        <div class="dropdown-body">
+                            <div class="noti-item" onclick="goToPanelFromNoti()">
+                                <i class="bi bi-cash-coin text-success"></i>
+                                <div>
+                                    <p class="noti-title">Venta de hoy alcanzada</p>
+                                    <span class="noti-sub">Ganancia parcial: $45.500</span>
+                                </div>
+                            </div>
+                            <div class="noti-item" onclick="goToPanelFromNoti()">
+                                <i class="bi bi-exclamation-triangle-fill text-warning"></i>
+                                <div>
+                                    <p class="noti-title">Gasto de Mantenimiento</p>
+                                    <span class="noti-sub">Día 11: -$18.000 registrado</span>
+                                </div>
+                            </div>
+                            <div class="noti-item" onclick="goToPanelFromNoti()">
+                                <i class="bi bi-box-seam text-primary"></i>
+                                <div>
+                                    <p class="noti-title">Stock bajo en EcoTech</p>
+                                    <span class="noti-sub">Revisa inventario de insumos</span>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn-noti-action" onclick="goToPanelFromNoti()">Ver desglose del mes
+                            &rarr;</button>
+                    </div>
+                </div>
+
                 <div class="user-pill">
                     <span class="dot-status"></span>
                     <span>Alex</span>
@@ -46,14 +83,14 @@
                 <div class="stats-info">
                     <div>
                         <span class="widget-label">Rendimiento Hoy</span>
-                        <h3>+85% Salud Comercial</h3>
+                        <h3>+$45.500 Ganancia Día</h3>
                     </div>
                     <span class="badge-status">
                         <i class="bi bi-check-circle-fill"></i> Óptimo
                     </span>
                 </div>
                 <div class="stats-action">
-                    <span>Ver panel</span>
+                    <span>Ver panel mensual</span>
                     <i class="bi bi-chevron-right"></i>
                 </div>
             </div>
@@ -70,7 +107,7 @@
                             <i class="bi bi-journal-bookmark"></i>
                         </div>
                         <h4>Propuesta de Valor</h4>
-                        <p>Módulo 2 • 15 min restantes</p>
+                        <p>Desplegable • Listo para ver</p>
                     </div>
                     <div class="mini-course-card" onclick="switchTab('sec-clases')">
                         <div class="card-top">
@@ -78,7 +115,7 @@
                             <i class="bi bi-cash-coin"></i>
                         </div>
                         <h4>Flujo de Caja Pyme</h4>
-                        <p>Módulo 1 • En progreso</p>
+                        <p>Desplegable • Listo para ver</p>
                     </div>
                 </div>
             </div>
@@ -95,36 +132,94 @@
             </div>
         </section>
 
-        <!-- 2. CLASES -->
+        <!-- 2. CLASES (Lista desplegable en cada clase) -->
         <section id="sec-clases" class="app-section">
             <h2 class="page-title">Clases y Herramientas</h2>
-            <div class="classes-list">
-                <div class="class-card">
-                    <div class="class-icon"><i class="bi bi-grid-3x3-gap-fill"></i></div>
-                    <div class="class-details">
-                        <h4>Modelo Canvas Interactivo</h4>
-                        <p>Estructura paso a paso tu idea de negocio y propuesta de valor.</p>
-                        <button class="btn-start">Iniciar Clase</button>
-                    </div>
-                </div>
 
-                <div class="class-card">
-                    <div class="class-icon blue"><i class="bi bi-wallet2"></i></div>
-                    <div class="class-details">
-                        <h4>Educación Financiera Pyme</h4>
-                        <p>Aprende a gestionar costos e ingresos para la sostenibilidad.</p>
-                        <button class="btn-start">Iniciar Clase</button>
+            <div class="classes-accordion">
+                <!-- Clase 1 -->
+                <details class="class-dropdown-card" open>
+                    <summary class="class-summary">
+                        <div class="class-icon"><i class="bi bi-grid-3x3-gap-fill"></i></div>
+                        <div class="class-summary-text">
+                            <span class="tag-badge">Módulo 1</span>
+                            <h4>Modelo Canvas Interactivo</h4>
+                            <p>Estructura paso a paso tu idea de negocio y propuesta de valor.</p>
+                        </div>
+                        <i class="bi bi-chevron-down arrow-dropdown"></i>
+                    </summary>
+                    <div class="class-dropdown-content">
+                        <div class="lesson-content-box">
+                            <h4><i class="bi bi-lightbulb-fill text-primary"></i> Lección 1.1: Tu Propuesta de Valor
+                            </h4>
+                            <ul class="class-steps-list">
+                                <li><strong>1. Identifica el dolor:</strong> Resuelve una molestia real de tu cliente.
+                                </li>
+                                <li><strong>2. Alivia el problema:</strong> Asegúrate de ahorrarle tiempo o dinero.</li>
+                                <li><strong>3. Beneficio único:</strong> Destaca lo que te distingue de competidores
+                                    directos.</li>
+                            </ul>
+                        </div>
+                        <div class="interactive-quiz">
+                            <p><strong>Ejercicio rápido:</strong> ¿Cuál es el enfoque de la propuesta de valor?</p>
+                            <div class="quiz-options">
+                                <button class="btn-quiz" onclick="checkAnswer(this, false)">Cobrar siempre lo más
+                                    barato</button>
+                                <button class="btn-quiz" onclick="checkAnswer(this, true)">Resolver un problema
+                                    específico</button>
+                            </div>
+                            <div id="quiz-feedback-1" class="quiz-feedback hidden"></div>
+                        </div>
                     </div>
-                </div>
+                </details>
 
-                <div class="class-card">
-                    <div class="class-icon purple"><i class="bi bi-file-earmark-text-fill"></i></div>
-                    <div class="class-details">
-                        <h4>Formalización e Impuestos</h4>
-                        <p>Guía clara de trámites legales y tributación básica.</p>
-                        <button class="btn-start">Iniciar Clase</button>
+                <!-- Clase 2 -->
+                <details class="class-dropdown-card">
+                    <summary class="class-summary">
+                        <div class="class-icon blue"><i class="bi bi-wallet2"></i></div>
+                        <div class="class-summary-text">
+                            <span class="tag-badge blue">Módulo 2</span>
+                            <h4>Educación Financiera Pyme</h4>
+                            <p>Aprende a gestionar costos e ingresos para la sostenibilidad.</p>
+                        </div>
+                        <i class="bi bi-chevron-down arrow-dropdown"></i>
+                    </summary>
+                    <div class="class-dropdown-content">
+                        <div class="lesson-content-box">
+                            <h4><i class="bi bi-cash-stack text-success"></i> Lección 2.1: Cálculo de Precios</h4>
+                            <p class="text-sm">Nunca fijos precios "a ojo". Usa la fórmula fundamental:</p>
+                            <div class="formula-box">Precio = Materiales + Tu Hora de Trabajo + Margen de Inversión
+                            </div>
+                            <ul class="class-steps-list">
+                                <li><strong>Costos Fijos:</strong> Luz, internet, software.</li>
+                                <li><strong>Costos Variables:</strong> Empaques, insumos por producto.</li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
+                </details>
+
+                <!-- Clase 3 -->
+                <details class="class-dropdown-card">
+                    <summary class="class-summary">
+                        <div class="class-icon purple"><i class="bi bi-file-earmark-text-fill"></i></div>
+                        <div class="class-summary-text">
+                            <span class="tag-badge purple">Módulo 3</span>
+                            <h4>Formalización e Impuestos</h4>
+                            <p>Guía clara de trámites legales y tributación básica.</p>
+                        </div>
+                        <i class="bi bi-chevron-down arrow-dropdown"></i>
+                    </summary>
+                    <div class="class-dropdown-content">
+                        <div class="lesson-content-box">
+                            <h4><i class="bi bi-shield-check text-purple"></i> Lección 3.1: Primeros Trámites</h4>
+                            <ul class="class-steps-list">
+                                <li><strong>1. Registro:</strong> Crea tu empresa en el portal oficial en 1 día.</li>
+                                <li><strong>2. Inicio de actividades:</strong> Declara tu rubro económico.</li>
+                                <li><strong>3. Documentos:</strong> Comienza a emitir boletas de venta.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </details>
             </div>
         </section>
 
@@ -148,24 +243,120 @@
             </div>
         </section>
 
-        <!-- 4. PANEL -->
+        <!-- 4. PANEL (Con ganancias y pérdidas operativas) -->
         <section id="sec-panel" class="app-section">
-            <h2 class="page-title">Estado de la Empresa</h2>
+            <h2 class="page-title">Historial Mensual de Ventas</h2>
 
             <div class="metrics-row">
                 <div class="metric-box">
                     <div class="metric-header">
-                        <span>Supervivencia</span>
-                        <i class="bi bi-shield-check text-success"></i>
+                        <span>Balance Neto Mes</span>
+                        <i class="bi bi-cash-stack text-success"></i>
                     </div>
-                    <strong>85%</strong>
+                    <strong>+$1.115.500</strong>
                 </div>
                 <div class="metric-box">
                     <div class="metric-header">
-                        <span>Ventas Mes</span>
+                        <span>Total Pedidos</span>
                         <i class="bi bi-graph-up-arrow text-primary"></i>
                     </div>
-                    <strong>$1.2M</strong>
+                    <strong>342 Unid.</strong>
+                </div>
+            </div>
+
+            <div class="history-card">
+                <div class="history-header">
+                    <h3>Registro Diario de Balances</h3>
+                    <span class="history-sub">Agosto 2026</span>
+                </div>
+
+                <div class="table-container">
+                    <table class="sales-table">
+                        <thead>
+                            <tr>
+                                <th>Día</th>
+                                <th>Estado / Venta</th>
+                                <th>Balance Día</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Día 01</td>
+                                <td>12 pedidos</td>
+                                <td class="text-success">+$38.000</td>
+                            </tr>
+                            <tr>
+                                <td>Día 02</td>
+                                <td>15 pedidos</td>
+                                <td class="text-success">+$42.500</td>
+                            </tr>
+                            <tr class="row-loss">
+                                <td>Día 03</td>
+                                <td>Compra Insumos</td>
+                                <td class="text-danger">-$25.000</td>
+                            </tr>
+                            <tr>
+                                <td>Día 04</td>
+                                <td>18 pedidos</td>
+                                <td class="text-success">+$58.000</td>
+                            </tr>
+                            <tr>
+                                <td>Día 05</td>
+                                <td>10 pedidos</td>
+                                <td class="text-success">+$31.000</td>
+                            </tr>
+                            <tr>
+                                <td>Día 06</td>
+                                <td>22 pedidos</td>
+                                <td class="text-success">+$71.500</td>
+                            </tr>
+                            <tr>
+                                <td>Día 07 (Hoy)</td>
+                                <td>14 pedidos</td>
+                                <td class="text-success">+$45.500</td>
+                            </tr>
+                            <tr>
+                                <td>Día 08</td>
+                                <td>11 pedidos</td>
+                                <td class="text-success">+$35.000</td>
+                            </tr>
+                            <tr class="row-loss">
+                                <td>Día 09</td>
+                                <td>Reparación Máquina</td>
+                                <td class="text-danger">-$40.000</td>
+                            </tr>
+                            <tr>
+                                <td>Día 10</td>
+                                <td>19 pedidos</td>
+                                <td class="text-success">+$61.000</td>
+                            </tr>
+                            <tr class="row-loss">
+                                <td>Día 11</td>
+                                <td>Pago Serv. Básicos</td>
+                                <td class="text-danger">-$18.000</td>
+                            </tr>
+                            <tr>
+                                <td>Día 12</td>
+                                <td>13 pedidos</td>
+                                <td class="text-success">+$40.000</td>
+                            </tr>
+                            <tr>
+                                <td>Día 13</td>
+                                <td>15 pedidos</td>
+                                <td class="text-success">+$48.000</td>
+                            </tr>
+                            <tr>
+                                <td>Día 14</td>
+                                <td>20 pedidos</td>
+                                <td class="text-success">+$65.000</td>
+                            </tr>
+                            <tr>
+                                <td>Día 15</td>
+                                <td>25 pedidos</td>
+                                <td class="text-success">+$82.000</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
 

@@ -631,3 +631,376 @@ canvas {
     color: var(--primary-dark);
     font-weight: 700;
 }
+
+/* Dropdown de Notificaciones */
+.notification-wrapper {
+    position: relative;
+}
+
+.notification-badge {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    width: 8px;
+    height: 8px;
+    background-color: #ef4444;
+    border-radius: 50%;
+}
+
+.notifications-dropdown {
+    position: absolute;
+    top: 45px;
+    right: 0;
+    width: 230px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    padding: 12px;
+    z-index: 100;
+}
+
+.dropdown-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #f1f5f9;
+    padding-bottom: 8px;
+    margin-bottom: 8px;
+    font-size: 0.85rem;
+}
+
+.badge-today {
+    background: #e0e7ff;
+    color: #4338ca;
+    font-size: 0.65rem;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: 700;
+}
+
+.stat-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    margin-bottom: 6px;
+    color: #475569;
+}
+
+.stat-row.highlight {
+    color: #059669;
+}
+
+/* Vista de Clase Incorporada */
+.class-preview-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 18px;
+    border: 1px solid #e2e8f0;
+    margin-bottom: 20px;
+}
+
+.class-header-badge {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.lesson-time {
+    font-size: 0.75rem;
+    color: #64748b;
+}
+
+.lesson-intro {
+    font-size: 0.85rem;
+    color: #475569;
+    margin-bottom: 14px;
+}
+
+.lesson-content-box {
+    background: #f8fafc;
+    border-left: 3px solid #10b981;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 14px;
+}
+
+.lesson-content-box h4 {
+    font-size: 0.85rem;
+    margin-bottom: 8px;
+}
+
+.class-steps-list {
+    list-style: none;
+    padding: 0;
+    font-size: 0.8rem;
+    color: #334155;
+}
+
+.class-steps-list li {
+    margin-bottom: 6px;
+}
+
+.interactive-quiz {
+    background: #f1f5f9;
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 0.8rem;
+}
+
+.quiz-options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.btn-quiz {
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    text-align: left;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-quiz:hover {
+    background: #e2e8f0;
+}
+
+.quiz-feedback {
+    margin-top: 8px;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-weight: 600;
+}
+
+.quiz-feedback.correct {
+    background: #d1fae5;
+    color: #065f46;
+}
+
+.quiz-feedback.incorrect {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.other-modules-title {
+    margin: 16px 0 10px 0;
+    font-size: 0.9rem;
+    color: #64748b;
+}
+
+/* Tabla del Panel */
+.history-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 16px;
+    border: 1px solid #e2e8f0;
+    margin-bottom: 20px;
+}
+
+.history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.history-header h3 {
+    font-size: 0.95rem;
+}
+
+.history-sub {
+    font-size: 0.75rem;
+    color: #64748b;
+}
+
+.table-container {
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+.sales-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.8rem;
+    text-align: left;
+}
+
+.sales-table th {
+    position: sticky;
+    top: 0;
+    background: #f8fafc;
+    color: #64748b;
+    padding: 8px;
+}
+
+.sales-table td {
+    padding: 8px;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.sales-table tr:hover {
+    background: #f8fafc;
+}
+
+.position-relative {
+    position: relative;
+}
+
+/* Badge de Notificación arriba a la derecha */
+.notification-badge-top {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    width: 9px;
+    height: 9px;
+    background-color: #ef4444;
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+}
+
+/* Dropdown de Notificaciones Extendido */
+.notifications-dropdown {
+    position: absolute;
+    top: 45px;
+    right: 0;
+    width: 260px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.12);
+    padding: 12px;
+    z-index: 100;
+}
+
+.noti-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid #f1f5f9;
+    cursor: pointer;
+}
+
+.noti-item:hover {
+    background: #f8fafc;
+}
+
+.noti-title {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #0f172a;
+    line-height: 1.2;
+}
+
+.noti-sub {
+    font-size: 0.7rem;
+    color: #64748b;
+}
+
+.btn-noti-action {
+    width: 100%;
+    margin-top: 8px;
+    background: #f1f5f9;
+    border: none;
+    padding: 8px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #059669;
+    cursor: pointer;
+}
+
+/* Clases en desplegables Accordion */
+.classes-accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.class-dropdown-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+}
+
+.class-dropdown-card[open] {
+    border-color: #10b981;
+}
+
+.class-summary {
+    list-style: none;
+    padding: 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.class-summary::-webkit-details-marker {
+    display: none;
+}
+
+.class-summary-text {
+    flex: 1;
+}
+
+.class-summary-text h4 {
+    font-size: 0.88rem;
+    margin-top: 2px;
+}
+
+.class-summary-text p {
+    font-size: 0.75rem;
+    color: #64748b;
+}
+
+.arrow-dropdown {
+    font-size: 0.9rem;
+    color: #64748b;
+    transition: transform 0.2s;
+}
+
+.class-dropdown-card[open] .arrow-dropdown {
+    transform: rotate(180deg);
+}
+
+.class-dropdown-content {
+    padding: 0 14px 14px 14px;
+    border-top: 1px solid #f1f5f9;
+    background: #fafafa;
+}
+
+.formula-box {
+    background: #e0e7ff;
+    color: #3730a3;
+    padding: 8px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    margin: 8px 0;
+    text-align: center;
+}
+
+/* Colores de Pérdidas y Ganancias en el Panel */
+.text-danger {
+    color: #dc2626 !important;
+    font-weight: 600;
+}
+
+.text-success {
+    color: #16a34a !important;
+    font-weight: 600;
+}
+
+.row-loss {
+    background-color: #fef2f2;
+}

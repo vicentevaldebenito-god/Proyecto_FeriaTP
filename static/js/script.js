@@ -82,7 +82,7 @@ async function sendAIMessage() {
     });
 
     // Endpoint actualizado a gemini-2.0-flash
-const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}`;    try {
+    const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}`; try {
         const response = await fetch(endpoint, {
             method: 'POST',
             headers: {
@@ -202,6 +202,73 @@ function closeCourseModal() {
     if (modal) modal.classList.add('hidden');
 }
 
+
+// ==========================================
+// NOTIFICACIONES Y NAVEGACIÓN DIRECTA
+// ==========================================
+function toggleNotifications() {
+    const dropdown = document.getElementById('notifications-dropdown');
+    if (dropdown) {
+        dropdown.classList.toggle('hidden');
+    }
+}
+
+function goToPanelFromNoti() {
+    // Cerrar dropdown de notificaciones y cambiar al panel
+    const dropdown = document.getElementById('notifications-dropdown');
+    if (dropdown) dropdown.classList.add('hidden');
+
+    switchTab('sec-panel');
+}
+
+function checkAnswer(button, isCorrect) {
+    const feedback = button.parentElement.nextElementSibling;
+    if (!feedback) return;
+
+    feedback.classList.remove('hidden', 'correct', 'incorrect');
+
+    if (isCorrect) {
+        feedback.classList.add('correct');
+        feedback.innerText = '¡Correcto! Responder al problema real asegura tus ventas.';
+    } else {
+        feedback.classList.add('incorrect');
+        feedback.innerText = 'Incorrecto: Reducir precios destruye tu margen de ganancia.';
+    }
+}
+
+// ==========================================
+// NAVEGACIÓN ENTRE SECCIONES
+// ==========================================
+function switchTab(sectionId) {
+    const targetSection = document.getElementById(sectionId);
+    if (!targetSection) return;
+
+    const sections = document.querySelectorAll('.app-section');
+    sections.forEach(sec => sec.classList.remove('active'));
+
+    targetSection.classList.add('active');
+
+    const navItems = document.querySelectorAll('.nav-item');
+    navItems.forEach(item => {
+        if (item.getAttribute('data-target') === sectionId) {
+            item.classList.add('active');
+        } else {
+            item.classList.remove('active');
+        }
+    });
+
+    const dropdown = document.getElementById('notifications-dropdown');
+    if (dropdown && !dropdown.classList.contains('hidden')) {
+        dropdown.classList.add('hidden');
+    }
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function handleKeyPress(e) {
+    if (e.key === 'Enter') sendAIMessage();
+}
+
 // ==========================================
 // CÁMARA Y MÓDULO IOT
 // ==========================================
@@ -238,7 +305,6 @@ function takeSnapshot() {
     video.classList.add('hidden');
     canvas.classList.remove('hidden');
 
-    // Detener la transmisión de la cámara
     if (videoStream) {
         videoStream.getTracks().forEach(track => track.stop());
     }
