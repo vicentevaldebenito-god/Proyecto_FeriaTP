@@ -1,7 +1,7 @@
 // ==========================================
 // CONFIGURACIÓN DE API
 // ==========================================
-const GEMINI_API_KEY = "AQ.Ab8RN6LaevZaWUrexhrYWhbddQGZT6smMJxvRYXZ9GBUHEgBIQ";
+const GEMINI_API_KEY = "AQ.Ab8RN6I5yVuFnO6_mYF933Ec3YSsfDanTqvuyVWF9tbZGRlTNQ";
 
 // Instrucción de Sistema para especializar la IA en emprendimiento
 const SYSTEM_INSTRUCTION = `
@@ -75,16 +75,14 @@ async function sendAIMessage() {
     chatBox.appendChild(botDiv);
     chatBox.scrollTop = chatBox.scrollHeight;
 
-    // 3. Registrar mensaje del usuario en el historial
+    // 3. Registrar mensaje en el historial
     chatHistory.push({
         role: "user",
         parts: [{ text: userText }]
     });
 
-    // Usamos la versión de modelo 2.5/2.0 compatible con las claves actuales de AI Studio
-    const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}`;
-
-    try {
+    // Endpoint actualizado a gemini-2.0-flash
+const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}`;    try {
         const response = await fetch(endpoint, {
             method: 'POST',
             headers: {
@@ -100,32 +98,110 @@ async function sendAIMessage() {
 
         const data = await response.json();
 
-        // Si hay un error devuelto por la API, lo mostramos en pantalla para solucionarlo al instante
-        if (data.error) {
-            console.error("Error API Gemini:", data.error);
-            botDiv.innerText = `Error de API: ${data.error.message || 'Clave o modelo no permitido.'}`;
-            return;
-        }
-
         if (data.candidates && data.candidates[0].content.parts[0].text) {
             const aiResponse = data.candidates[0].content.parts[0].text;
-
             botDiv.innerText = aiResponse;
 
             chatHistory.push({
                 role: "model",
                 parts: [{ text: aiResponse }]
             });
+        } else if (data.error) {
+            botDiv.innerText = `Error API: ${data.error.message}`;
         } else {
-            botDiv.innerText = "No se recibió respuesta del modelo.";
+            botDiv.innerText = "Respuesta no disponible.";
         }
     } catch (error) {
-        console.error("Error de red:", error);
-        botDiv.innerText = "Error de conexión. Si usas Chrome/Edge, prueba abriendo la página mediante un servidor local (Live Server).";
+        console.error("Detalle del error:", error);
+        botDiv.innerText = "Error de conexión con la IA. Revisa la consola del navegador (F12).";
     }
 
     chatBox.scrollTop = chatBox.scrollHeight;
 }
+
+// ==========================================
+// CURSOS Y MODAL EDUCATIVO
+// ==========================================
+const coursesData = {
+    1: {
+        tag: "Modelo Canvas",
+        title: "¿Qué problema resuelves y a quién?",
+        content: `
+            <div class="lesson-text">
+                <p>No necesitas escribir un libro de 50 páginas para planear tu negocio. El Modelo Canvas es simplemente <strong>ordenar tu idea en una sola vista</strong>.</p>
+                <div class="lesson-box">
+                    <strong>💡 La clave:</strong> Nadie compra un producto solo porque sí, compran algo que les ahorra tiempo, dinero o un dolor de cabeza.
+                </div>
+                <p>Para empezar bien, define estos 3 puntos sencillos:</p>
+                <ul class="lesson-steps">
+                    <li><strong>Tu Cliente Ideal:</strong> Sé muy específico (ej: "Personas que trabajan en oficina y no tienen tiempo de cocinar").</li>
+                    <li><strong>Tu Propuesta de Valor:</strong> ¿Por qué te elegirían a ti? (ej: "Menús caseros congelados listos en 3 minutos").</li>
+                    <li><strong>Tu Forma de Cobro:</strong> ¿Te pagan por producto individual, por paquete semanal o mensualidad?</li>
+                </ul>
+            </div>
+        `
+    },
+    2: {
+        tag: "Finanzas Pyme",
+        title: "Calcula el precio correcto sin perder dinero",
+        content: `
+            <div class="lesson-text">
+                <p>El error más común es cobrar "a ojo" o fijarte solo en lo que cobra la competencia.</p>
+                <div class="lesson-box">
+                    <strong>Fórmula Directa:</strong><br>
+                    Precio = Materiales + Tu Pago por Hora + Margen de la Empresa.
+                </div>
+                <p>Paso a paso para calcular tus precios:</p>
+                <ul class="lesson-steps">
+                    <li><strong>Costo Variable:</strong> Suma lo que usas en UN solo producto (ingredientes, empaque, etiquetas).</li>
+                    <li><strong>Tu Sueldo:</strong> Define cuánto vale tu hora de trabajo y súmasela al producto. ¡Tu tiempo vale!</li>
+                    <li><strong>Ganancia para el Negocio:</strong> Agrega un porcentaje extra (ej: 30%) que se guarda para emergencias o inversión.</li>
+                </ul>
+            </div>
+        `
+    },
+    3: {
+        tag: "Legal e Impuestos",
+        title: "Perdiéndole el miedo a la formalización",
+        content: `
+            <div class="lesson-text">
+                <p>Formalizar no es para que te quiten dinero, es la única forma de <strong>venderle a empresas grandes, pedir créditos e importar sin problemas</strong>.</p>
+                <div class="lesson-box">
+                    <strong>Dato importante:</strong> El IVA no sale de tu bolsillo. Es un valor que paga tu cliente y tú solo lo recibes para entregárselo al estado.
+                </div>
+                <p>El camino simple para formalizarte:</p>
+                <ul class="lesson-steps">
+                    <li><strong>Crea tu Empresa Online:</strong> Usa portales oficiales como "Empresa en un Día" para crear tu sociedad rápidamente.</li>
+                    <li><strong>Inicio de Actividades:</strong> Le informas al servicio tributario que comenzarás a operar legalmente.</li>
+                    <li><strong>Emite Boletas o Facturas:</strong> Emite tus documentos digitales para mantener tus operaciones transparentes.</li>
+                </ul>
+            </div>
+        `
+    }
+};
+
+function openCourse(courseId) {
+    const modal = document.getElementById('course-modal');
+    const modalBody = document.getElementById('modal-body');
+    const course = coursesData[courseId];
+
+    if (!course || !modal || !modalBody) return;
+
+    modalBody.innerHTML = `
+        <span class="lesson-tag">${course.tag}</span>
+        <h3 class="lesson-title">${course.title}</h3>
+        ${course.content}
+        <button class="btn-finish-lesson" onclick="closeCourseModal()">¡Entendido! Completar Clase</button>
+    `;
+
+    modal.classList.remove('hidden');
+}
+
+function closeCourseModal() {
+    const modal = document.getElementById('course-modal');
+    if (modal) modal.classList.add('hidden');
+}
+
 // ==========================================
 // CÁMARA Y MÓDULO IOT
 // ==========================================
@@ -168,8 +244,8 @@ function takeSnapshot() {
     }
 
     scanResult.innerHTML = `
-    <div style="background: #d1fae5; color: #065f46; padding: 12px; border-radius: 10px; font-weight: 600; display: flex; align-items: center; gap: 8px;">
-      <i class="bi bi-check-circle-fill"></i> Análisis completado: Estándar de Calidad 98% Conforme
-    </div>
-  `;
+        <div style="background: #d1fae5; color: #065f46; padding: 12px; border-radius: 10px; font-weight: 600; display: flex; align-items: center; gap: 8px;">
+            <i class="bi bi-check-circle-fill"></i> Análisis completado: Estándar de Calidad 98% Conforme
+        </div>
+    `;
 }
