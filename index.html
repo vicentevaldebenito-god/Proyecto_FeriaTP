@@ -3,414 +3,128 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prospere App</title>
-    <link rel="stylesheet" href="static/css/style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>PROSPERE - Gestión Inteligente</title>
+    <meta name="description" content="Plataforma moderna de apoyo al emprendimiento.">
+    <meta name="theme-color" content="#f8fafc">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+    <!-- Estilos Personalizados -->
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 
-<body>
+<body class="bg-light-custom">
 
-    <!-- Header -->
-    <header class="app-header">
-        <div class="header-content">
-            <div class="brand">
-                <i class="bi bi-sprout-fill brand-icon"></i>
-                <span>Prospere</span>
+    <div class="app-layout">
+        <!-- NAVEGACIÓN PRINCIPAL (Responsive: Bottom-bar en móvil, Sidebar en Desktop) -->
+        <nav class="app-nav shadow-sm" aria-label="Navegación principal">
+
+            <!-- Branding (Visible solo en escritorio) -->
+            <div class="nav-brand d-none d-md-flex align-items-center mb-4 px-3 pt-3">
+                <span class="fs-3 text-success fw-bold me-2">
+                    <i class="bi bi-layers-fill"></i>
+                </span>
+                <h1 class="h4 text-success fw-bold mb-0">Prospere</h1>
             </div>
-            <div class="header-right">
-                <!-- Notificaciones con Badge absoluto -->
-                <div class="notification-wrapper">
-                    <button class="icon-btn position-relative" onclick="toggleNotifications()"
-                        aria-label="Notificaciones">
-                        <i class="bi bi-bell"></i>
-                        <span class="notification-badge-top"></span>
+
+            <!-- Enlaces de navegación -->
+            <ul class="nav-links list-unstyled d-flex flex-md-column justify-content-around w-100 m-0 p-0">
+                <li class="nav-item">
+                    <button class="nav-btn active d-flex flex-column flex-md-row align-items-center w-100"
+                        data-view="dashboard" aria-label="Ir al Inicio">
+                        <i class="bi bi-house-door fs-4 mb-1 mb-md-0 me-md-3"></i>
+                        <span class="nav-text fs-7 fw-medium">Inicio</span>
                     </button>
-                    <div id="notifications-dropdown" class="notifications-dropdown hidden">
-                        <div class="dropdown-header">
-                            <strong>Centro de Alertas</strong>
-                            <span class="badge-today">3 Nuevas</span>
-                        </div>
-                        <div class="dropdown-body">
-                            <div class="noti-item" onclick="goToPanelFromNoti()">
-                                <i class="bi bi-cash-coin text-success"></i>
-                                <div>
-                                    <p class="noti-title">Venta de hoy alcanzada</p>
-                                    <span class="noti-sub">Ganancia parcial: $45.500</span>
-                                </div>
-                            </div>
-                            <div class="noti-item" onclick="goToPanelFromNoti()">
-                                <i class="bi bi-exclamation-triangle-fill text-warning"></i>
-                                <div>
-                                    <p class="noti-title">Gasto de Mantenimiento</p>
-                                    <span class="noti-sub">Día 11: -$18.000 registrado</span>
-                                </div>
-                            </div>
-                            <div class="noti-item" onclick="goToPanelFromNoti()">
-                                <i class="bi bi-box-seam text-primary"></i>
-                                <div>
-                                    <p class="noti-title">Stock bajo en EcoTech</p>
-                                    <span class="noti-sub">Revisa inventario de insumos</span>
-                                </div>
-                            </div>
-                        </div>
-                        <button class="btn-noti-action" onclick="goToPanelFromNoti()">Ver desglose del mes
-                            &rarr;</button>
-                    </div>
-                </div>
-
-                <div class="user-pill">
-                    <span class="dot-status"></span>
-                    <span>Alex</span>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <main class="app-main">
-
-        <!-- 1. INICIO -->
-        <section id="sec-inicio" class="app-section active">
-            <div class="user-greeting">
-                <div class="greeting-header">
-                    <h1>Hola, Alex</h1>
-                    <i class="bi bi-hand-index-thumb text-primary"></i>
-                </div>
-                <p>Emprendimiento: <strong>EcoTech Chile</strong></p>
-            </div>
-
-            <div class="stats-card-widget" onclick="switchTab('sec-panel')">
-                <div class="stats-info">
-                    <div>
-                        <span class="widget-label">Rendimiento Hoy</span>
-                        <h3>+$45.500 Ganancia Día</h3>
-                    </div>
-                    <span class="badge-status">
-                        <i class="bi bi-check-circle-fill"></i> Óptimo
-                    </span>
-                </div>
-                <div class="stats-action">
-                    <span>Ver panel mensual</span>
-                    <i class="bi bi-chevron-right"></i>
-                </div>
-            </div>
-
-            <div class="section-block">
-                <div class="block-header">
-                    <h3>Continuar Aprendiendo</h3>
-                    <a onclick="switchTab('sec-clases')">Ver todas</a>
-                </div>
-                <div class="courses-scroll">
-                    <div class="mini-course-card" onclick="switchTab('sec-clases')">
-                        <div class="card-top">
-                            <span class="tag-badge">Canvas</span>
-                            <i class="bi bi-journal-bookmark"></i>
-                        </div>
-                        <h4>Propuesta de Valor</h4>
-                        <p>Desplegable • Listo para ver</p>
-                    </div>
-                    <div class="mini-course-card" onclick="switchTab('sec-clases')">
-                        <div class="card-top">
-                            <span class="tag-badge blue">Finanzas</span>
-                            <i class="bi bi-cash-coin"></i>
-                        </div>
-                        <h4>Flujo de Caja Pyme</h4>
-                        <p>Desplegable • Listo para ver</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="ai-callout-card" onclick="switchTab('sec-ia')">
-                <div class="ai-icon-bg">
-                    <i class="bi bi-stars"></i>
-                </div>
-                <div class="ai-callout-text">
-                    <h3>¿Tienes una duda rápida?</h3>
-                    <p>Pregúntale a tu mentor IA sobre impuestos, precios o Canvas.</p>
-                </div>
-                <i class="bi bi-arrow-right arrow-icon"></i>
-            </div>
-        </section>
-
-        <!-- 2. CLASES (Lista desplegable en cada clase) -->
-        <section id="sec-clases" class="app-section">
-            <h2 class="page-title">Clases y Herramientas</h2>
-
-            <div class="classes-accordion">
-                <!-- Clase 1 -->
-                <details class="class-dropdown-card" open>
-                    <summary class="class-summary">
-                        <div class="class-icon"><i class="bi bi-grid-3x3-gap-fill"></i></div>
-                        <div class="class-summary-text">
-                            <span class="tag-badge">Módulo 1</span>
-                            <h4>Modelo Canvas Interactivo</h4>
-                            <p>Estructura paso a paso tu idea de negocio y propuesta de valor.</p>
-                        </div>
-                        <i class="bi bi-chevron-down arrow-dropdown"></i>
-                    </summary>
-                    <div class="class-dropdown-content">
-                        <div class="lesson-content-box">
-                            <h4><i class="bi bi-lightbulb-fill text-primary"></i> Lección 1.1: Tu Propuesta de Valor
-                            </h4>
-                            <ul class="class-steps-list">
-                                <li><strong>1. Identifica el dolor:</strong> Resuelve una molestia real de tu cliente.
-                                </li>
-                                <li><strong>2. Alivia el problema:</strong> Asegúrate de ahorrarle tiempo o dinero.</li>
-                                <li><strong>3. Beneficio único:</strong> Destaca lo que te distingue de competidores
-                                    directos.</li>
-                            </ul>
-                        </div>
-                        <div class="interactive-quiz">
-                            <p><strong>Ejercicio rápido:</strong> ¿Cuál es el enfoque de la propuesta de valor?</p>
-                            <div class="quiz-options">
-                                <button class="btn-quiz" onclick="checkAnswer(this, false)">Cobrar siempre lo más
-                                    barato</button>
-                                <button class="btn-quiz" onclick="checkAnswer(this, true)">Resolver un problema
-                                    específico</button>
-                            </div>
-                            <div id="quiz-feedback-1" class="quiz-feedback hidden"></div>
-                        </div>
-                    </div>
-                </details>
-
-                <!-- Clase 2 -->
-                <details class="class-dropdown-card">
-                    <summary class="class-summary">
-                        <div class="class-icon blue"><i class="bi bi-wallet2"></i></div>
-                        <div class="class-summary-text">
-                            <span class="tag-badge blue">Módulo 2</span>
-                            <h4>Educación Financiera Pyme</h4>
-                            <p>Aprende a gestionar costos e ingresos para la sostenibilidad.</p>
-                        </div>
-                        <i class="bi bi-chevron-down arrow-dropdown"></i>
-                    </summary>
-                    <div class="class-dropdown-content">
-                        <div class="lesson-content-box">
-                            <h4><i class="bi bi-cash-stack text-success"></i> Lección 2.1: Cálculo de Precios</h4>
-                            <p class="text-sm">Nunca fijos precios "a ojo". Usa la fórmula fundamental:</p>
-                            <div class="formula-box">Precio = Materiales + Tu Hora de Trabajo + Margen de Inversión
-                            </div>
-                            <ul class="class-steps-list">
-                                <li><strong>Costos Fijos:</strong> Luz, internet, software.</li>
-                                <li><strong>Costos Variables:</strong> Empaques, insumos por producto.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </details>
-
-                <!-- Clase 3 -->
-                <details class="class-dropdown-card">
-                    <summary class="class-summary">
-                        <div class="class-icon purple"><i class="bi bi-file-earmark-text-fill"></i></div>
-                        <div class="class-summary-text">
-                            <span class="tag-badge purple">Módulo 3</span>
-                            <h4>Formalización e Impuestos</h4>
-                            <p>Guía clara de trámites legales y tributación básica.</p>
-                        </div>
-                        <i class="bi bi-chevron-down arrow-dropdown"></i>
-                    </summary>
-                    <div class="class-dropdown-content">
-                        <div class="lesson-content-box">
-                            <h4><i class="bi bi-shield-check text-purple"></i> Lección 3.1: Primeros Trámites</h4>
-                            <ul class="class-steps-list">
-                                <li><strong>1. Registro:</strong> Crea tu empresa en el portal oficial en 1 día.</li>
-                                <li><strong>2. Inicio de actividades:</strong> Declara tu rubro económico.</li>
-                                <li><strong>3. Documentos:</strong> Comienza a emitir boletas de venta.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </details>
-            </div>
-        </section>
-
-        <!-- 3. IA -->
-        <section id="sec-ia" class="app-section">
-            <div class="chat-header">
-                <h2>Asistente Prospere IA</h2>
-                <span class="online-tag"><i class="bi bi-circle-fill"></i> Conectado</span>
-            </div>
-
-            <div class="chat-box" id="chat-box">
-                <div class="msg bot-msg">
-                    Hola Alex, soy tu mentor de gestión. ¿En qué puedo ayudarte hoy con EcoTech Chile?
-                </div>
-            </div>
-
-            <div class="chat-input-bar">
-                <input type="text" id="chat-input" placeholder="Pregunta sobre impuestos, ventas o Canvas..."
-                    onkeypress="handleKeyPress(event)">
-                <button onclick="sendAIMessage()" aria-label="Enviar"><i class="bi bi-send-fill"></i></button>
-            </div>
-        </section>
-
-        <!-- 4. PANEL (Con ganancias y pérdidas operativas) -->
-        <section id="sec-panel" class="app-section">
-            <h2 class="page-title">Historial Mensual de Ventas</h2>
-
-            <div class="metrics-row">
-                <div class="metric-box">
-                    <div class="metric-header">
-                        <span>Balance Neto Mes</span>
-                        <i class="bi bi-cash-stack text-success"></i>
-                    </div>
-                    <strong>+$1.115.500</strong>
-                </div>
-                <div class="metric-box">
-                    <div class="metric-header">
-                        <span>Total Pedidos</span>
-                        <i class="bi bi-graph-up-arrow text-primary"></i>
-                    </div>
-                    <strong>342 Unid.</strong>
-                </div>
-            </div>
-
-            <div class="history-card">
-                <div class="history-header">
-                    <h3>Registro Diario de Balances</h3>
-                    <span class="history-sub">Agosto 2026</span>
-                </div>
-
-                <div class="table-container">
-                    <table class="sales-table">
-                        <thead>
-                            <tr>
-                                <th>Día</th>
-                                <th>Estado / Venta</th>
-                                <th>Balance Día</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Día 01</td>
-                                <td>12 pedidos</td>
-                                <td class="text-success">+$38.000</td>
-                            </tr>
-                            <tr>
-                                <td>Día 02</td>
-                                <td>15 pedidos</td>
-                                <td class="text-success">+$42.500</td>
-                            </tr>
-                            <tr class="row-loss">
-                                <td>Día 03</td>
-                                <td>Compra Insumos</td>
-                                <td class="text-danger">-$25.000</td>
-                            </tr>
-                            <tr>
-                                <td>Día 04</td>
-                                <td>18 pedidos</td>
-                                <td class="text-success">+$58.000</td>
-                            </tr>
-                            <tr>
-                                <td>Día 05</td>
-                                <td>10 pedidos</td>
-                                <td class="text-success">+$31.000</td>
-                            </tr>
-                            <tr>
-                                <td>Día 06</td>
-                                <td>22 pedidos</td>
-                                <td class="text-success">+$71.500</td>
-                            </tr>
-                            <tr>
-                                <td>Día 07 (Hoy)</td>
-                                <td>14 pedidos</td>
-                                <td class="text-success">+$45.500</td>
-                            </tr>
-                            <tr>
-                                <td>Día 08</td>
-                                <td>11 pedidos</td>
-                                <td class="text-success">+$35.000</td>
-                            </tr>
-                            <tr class="row-loss">
-                                <td>Día 09</td>
-                                <td>Reparación Máquina</td>
-                                <td class="text-danger">-$40.000</td>
-                            </tr>
-                            <tr>
-                                <td>Día 10</td>
-                                <td>19 pedidos</td>
-                                <td class="text-success">+$61.000</td>
-                            </tr>
-                            <tr class="row-loss">
-                                <td>Día 11</td>
-                                <td>Pago Serv. Básicos</td>
-                                <td class="text-danger">-$18.000</td>
-                            </tr>
-                            <tr>
-                                <td>Día 12</td>
-                                <td>13 pedidos</td>
-                                <td class="text-success">+$40.000</td>
-                            </tr>
-                            <tr>
-                                <td>Día 13</td>
-                                <td>15 pedidos</td>
-                                <td class="text-success">+$48.000</td>
-                            </tr>
-                            <tr>
-                                <td>Día 14</td>
-                                <td>20 pedidos</td>
-                                <td class="text-success">+$65.000</td>
-                            </tr>
-                            <tr>
-                                <td>Día 15</td>
-                                <td>25 pedidos</td>
-                                <td class="text-success">+$82.000</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <div class="camera-card">
-                <div class="camera-header">
-                    <i class="bi bi-camera-fill"></i>
-                    <h3>Escáner IoT de Calidad</h3>
-                </div>
-                <p>Enciende la cámara y toma una foto para analizar la calidad de tu producto.</p>
-
-                <div class="camera-container">
-                    <video id="webcam" autoplay playsinline class="hidden"></video>
-                    <canvas id="canvas" class="hidden"></canvas>
-                    <div id="cam-placeholder" class="cam-placeholder">
-                        <i class="bi bi-camera-video-off"></i>
-                        <span>Cámara apagada</span>
-                    </div>
-                </div>
-
-                <div class="camera-controls">
-                    <button id="btn-start-cam" class="btn-cam" onclick="startCamera()">
-                        <i class="bi bi-power"></i> Encender Cámara
+                </li>
+                <li class="nav-item">
+                    <button class="nav-btn d-flex flex-column flex-md-row align-items-center w-100" data-view="academy"
+                        aria-label="Ir a Clases">
+                        <i class="bi bi-book fs-4 mb-1 mb-md-0 me-md-3"></i>
+                        <span class="nav-text fs-7 fw-medium">Clases</span>
                     </button>
-                    <button id="btn-snap" class="btn-cam green hidden" onclick="takeSnapshot()">
-                        <i class="bi bi-camera"></i> Tomar Foto
+                </li>
+                <li class="nav-item">
+                    <button class="nav-btn d-flex flex-column flex-md-row align-items-center w-100" data-view="ai"
+                        aria-label="Abrir asistente IA">
+                        <i class="bi bi-robot fs-4 mb-1 mb-md-0 me-md-3"></i>
+                        <span class="nav-text fs-7 fw-medium">IA</span>
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-btn d-flex flex-column flex-md-row align-items-center w-100" data-view="panel"
+                        aria-label="Ir al Panel de control">
+                        <i class="bi bi-bar-chart-line fs-4 mb-1 mb-md-0 me-md-3"></i>
+                        <span class="nav-text fs-7 fw-medium">Panel</span>
+                    </button>
+                </li>
+            </ul>
+
+            <!-- Acciones secundarias (Solo escritorio) -->
+            <div class="nav-footer d-none d-md-block mt-auto px-3 pb-4">
+                <button id="btn-sidebar-ajustes"
+                    class="btn btn-outline-secondary w-100 d-flex align-items-center justify-content-center text-muted border-0 shadow-none"
+                    aria-label="Configuración">
+                    <i class="bi bi-gear me-2"></i> Ajustes
+                </button>
+            </div>
+        </nav>
+
+        <!-- CONTENEDOR PRINCIPAL DINÁMICO -->
+        <main class="app-content pb-5 pb-md-0">
+            <!-- Header Global (Notificaciones y Perfil) -->
+            <header
+                class="d-flex justify-content-between align-items-center p-3 p-md-4 bg-white sticky-top shadow-sm z-index-1">
+                <div class="d-md-none">
+                    <h2 class="h5 text-success fw-bold mb-0">Prospere</h2>
+                </div>
+                <div class="d-none d-md-block">
+                    <!-- Espacio para breadcrumbs o título de sección dinámico si se requiere -->
+                </div>
+                <div class="user-actions d-flex align-items-center gap-3">
+                    <button class="btn btn-link text-dark p-0 position-relative" aria-label="Notificaciones">
+                        <i class="bi bi-bell fs-5"></i>
+                        <span
+                            class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle">
+                            <span class="visually-hidden">Nuevas alertas</span>
+                        </span>
+                    </button>
+                    <button class="btn btn-light rounded-pill px-3 py-1 border d-flex align-items-center gap-2"
+                        id="profile-btn" aria-label="Perfil del usuario">
+                        <span class="text-success fw-bold">•</span>
+                        <span class="fw-medium" id="user-name-display">Cargando...</span>
                     </button>
                 </div>
-                <div id="scan-result" class="scan-result"></div>
+            </header>
+
+            <!-- Zona de Inyección de Vistas (Aquí JS pintará el Dashboard, Academia, etc.) -->
+            <div id="view-container" class="container-fluid p-3 p-md-4 fade-in">
+                <!-- Skeleton Loader (Estado inicial de carga) -->
+                <div class="text-center py-5 text-muted">
+                    <div class="spinner-border text-success" role="status">
+                        <span class="visually-hidden">Cargando aplicación...</span>
+                    </div>
+                    <p class="mt-3">Iniciando entorno...</p>
+                </div>
             </div>
-        </section>
+        </main>
+    </div>
 
-    </main>
+    <!-- Modales Globales (Inyectados dinámicamente o pre-construidos para SmartScan / Chatbot / Canvas) -->
+    <div id="modal-container"></div>
 
-    <!-- Navegación Inferior -->
-    <nav class="bottom-nav">
-        <button class="nav-item active" data-target="sec-inicio" onclick="switchTab('sec-inicio')">
-            <i class="bi bi-house-door"></i>
-            <span>Inicio</span>
-        </button>
-        <button class="nav-item" data-target="sec-clases" onclick="switchTab('sec-clases')">
-            <i class="bi bi-book"></i>
-            <span>Clases</span>
-        </button>
-        <button class="nav-item" data-target="sec-ia" onclick="switchTab('sec-ia')">
-            <i class="bi bi-robot"></i>
-            <span>IA</span>
-        </button>
-        <button class="nav-item" data-target="sec-panel" onclick="switchTab('sec-panel')">
-            <i class="bi bi-bar-chart-line"></i>
-            <span>Panel</span>
-        </button>
-    </nav>
+    <!-- Bootstrap 5 Bundle con Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
 
-    <script src="static/js/script.js"></script>
+    <!-- Script Principal (Módulo) -->
+    <script type="module" src="js/main.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,68 @@
+[
+  {
+    "id": "c_canvas_01",
+    "titulo": "Business Model Canvas",
+    "descripcion": "Aprende a estructurar tu modelo de negocio bloque por bloque de forma visual y práctica.",
+    "categoria": "Estrategia",
+    "icono": "bi-grid-3x3-gap-fill",
+    "color_icono": "text-primary",
+    "estado": "No iniciado",
+    "progreso_porcentaje": 0,
+    "tiempo_restante": "16 min"
+  },
+  {
+    "id": "c_finanzas_02",
+    "titulo": "Flujo de Caja Pyme",
+    "descripcion": "Controla los ingresos y egresos de tu emprendimiento para asegurar la rentabilidad a largo plazo.",
+    "categoria": "Finanzas",
+    "icono": "bi-cash-coin",
+    "color_icono": "text-success",
+    "estado": "No iniciado",
+    "progreso_porcentaje": 0,
+    "tiempo_restante": "15 min"
+  },
+  {
+    "id": "c_web_03",
+    "titulo": "Desarrollo Web para Negocios",
+    "descripcion": "Crea la landing page de tu emprendimiento utilizando HTML5, CSS3 y Vanilla JavaScript.",
+    "categoria": "Tecnología",
+    "icono": "bi-code-slash",
+    "color_icono": "text-info",
+    "estado": "No iniciado",
+    "progreso_porcentaje": 0,
+    "tiempo_restante": "14 min"
+  },
+  {
+    "id": "c_python_04",
+    "titulo": "Automatización con Python",
+    "descripcion": "Crea scripts básicos para gestionar tu inventario y enviar alertas automáticas.",
+    "categoria": "Programación",
+    "icono": "bi-terminal-fill",
+    "color_icono": "text-warning",
+    "estado": "No iniciado",
+    "progreso_porcentaje": 0,
+    "tiempo_restante": "18 min"
+  },
+  {
+    "id": "c_ventas_05",
+    "titulo": "Estrategias de Pricing",
+    "descripcion": "Aprende a fijar precios basados en valor percibido y maximizar los márgenes de ganancia.",
+    "categoria": "Ventas",
+    "icono": "bi-graph-up-arrow",
+    "color_icono": "text-danger",
+    "estado": "No iniciado",
+    "progreso_porcentaje": 0,
+    "tiempo_restante": "15 min"
+  },
+  {
+    "id": "c_iot_06",
+    "titulo": "Sensores e IoT en Tiendas",
+    "descripcion": "Integra tecnología de lectura automática de inventario conectada en tiempo real.",
+    "categoria": "Innovación",
+    "icono": "bi-cpu-fill",
+    "color_icono": "text-primary",
+    "estado": "No iniciado",
+    "progreso_porcentaje": 0,
+    "tiempo_restante": "13 min"
+  }
+]
